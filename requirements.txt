@@ -1,0 +1,6 @@
+altgraph==0.17
+elevate==0.1.3
+macholib==1.14
+modulegraph==0.18
+pyinstaller==4.2
+pyinstaller-hooks-contrib==2021.1
