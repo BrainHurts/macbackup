@@ -89,6 +89,7 @@ def browse_clicked():
     folder_selected = filedialog.askdirectory()
     picked_vol = folder_selected
     label_vol.configure(text="Backup Location: " + picked_vol)
+    listbox_vol.configure(background="#222")
     # listbox_vol.insert(0, picked_vol)
     print(picked_vol)
     return picked_vol
@@ -105,15 +106,15 @@ label_user = Label(window, text="User Folder")
 listbox_vol = Listbox(window, width=45, selectmode=SINGLE, bd=0, bg='#222', fg='#fff', selectforeground='#fff', selectbackground="#064fd6", activestyle='none', exportselection=False)
 listbox_user = Listbox(window, width=45, selectmode=SINGLE, bd=0, bg='#222', fg='#fff', selectforeground='#fff', selectbackground="#064fd6", activestyle='none')
 
+documents_label = Label(text='Documents Count:')
+downloads_label = Label(text='Downloads Count:')
+desktop_label = Label(text='Desktop Count:')
+total_label = Label(text='Total Count:')
+
 browse_button = Button(window, text="Browse to Folder", width=30, height=2, command=browse_clicked)
 refresh_button = Button(window, text="Refresh", width=30, height=2, command=refresh_clicked)
 backup_button = Button(window, text="Backup", width=30, height=2, command=backup_clicked)
 exit_button = Button(window, text="Exit", width=30, height=2, command=exit)
-
-
-documents_label = Label(text='Documents Count:')
-downloads_label = Label(text='Downloads Count:')
-desktop_label = Label(text='Desktop Count:')
 
 # ----------- Pack it in
 label_vol.grid(column=0, columnspan=1, row=0, padx=5, ipadx=5, ipady=5)
@@ -122,14 +123,15 @@ label_user.grid(column=1, columnspan=1, row=0, padx=5, ipadx=5, ipady=5)
 listbox_vol.grid(column=0, row=1, padx=5, ipadx=5, ipady=5)
 listbox_user.grid(column=1, row=1, padx=5, pady=5, ipadx=5, ipady=5)
 
+documents_label.grid(column=0, row=3)
+downloads_label.grid(column=0, row=4)
+desktop_label.grid(column=0, row=5)
+total_label.grid(column=0, row=6)
+
 browse_button.grid(column=1, columnspan=1, row=3, rowspan=1, padx=5, pady=5)
 refresh_button.grid(column=1, columnspan=1, row=4, rowspan=1, padx=5, pady=5)
 backup_button.grid(column=1, columnspan=1, row=5, rowspan=1, padx=5, pady=5)
 exit_button.grid(column=1, columnspan=1, row=6, rowspan=1, padx=5, pady=5)
-
-documents_label.grid(column=0, row=3)
-downloads_label.grid(column=0, row=4)
-desktop_label.grid(column=0, row=5)
 
 
 def callbackVol(event):
@@ -175,6 +177,11 @@ def callbackName(event):
         desktop_count = sum([len(files) for r, d, files in os.walk(desktop)])
         print(desktop_count)
         desktop_label.configure(text=('Desktop Count: ' + str(desktop_count)))
+
+        total_files = desktop_count + downloads_count + documents_count
+        print(total_files)
+        total_label.configure(text=('Total Count: ' + str(total_files)))
+
         return(picked_user)
 
 
