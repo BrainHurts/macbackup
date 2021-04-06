@@ -17,7 +17,7 @@ https://github.com/BrainHurts/macbackup/raw/master/backup.zip
 Extract and run the contained app.
 
 Running the app:
- 1. a terminal will pop up that requires you enter the password of the currently logged in user
+ 1. a terminal will pop up that requires you enter the password of the currently logged in user, must be an admin
  2.  after the app loads pick a backup location from list or browse to it with the browse button
  3.  pick a user account from the list
  4.  verify at the top above both lists that the right backup location and user account are selected
