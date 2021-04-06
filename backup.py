@@ -3,7 +3,7 @@ import os
 from tkinter import *
 from tkinter import filedialog
 from elevate import elevate
-import time
+from sys import exit
 
 # Request Sudo Rights to Access Files for Backup
 elevate(graphical=False)
@@ -89,7 +89,7 @@ def browse_clicked():
     folder_selected = filedialog.askdirectory()
     picked_vol = folder_selected
     label_vol.configure(text="Backup Location: " + picked_vol)
-    listbox_vol.configure(background="#222")
+    listbox_vol.configure(background="#444")
     # listbox_vol.insert(0, picked_vol)
     print(picked_vol)
     return picked_vol
@@ -103,8 +103,8 @@ def refresh_clicked():
 label_vol = Label(window, text="Backup Location")
 label_user = Label(window, text="User Folder")
 
-listbox_vol = Listbox(window, width=45, selectmode=SINGLE, bd=0, bg='#222', fg='#fff', selectforeground='#fff', selectbackground="#064fd6", activestyle='none', exportselection=False)
-listbox_user = Listbox(window, width=45, selectmode=SINGLE, bd=0, bg='#222', fg='#fff', selectforeground='#fff', selectbackground="#064fd6", activestyle='none')
+listbox_vol = Listbox(window, width=45, selectmode=SINGLE, bd=0, bg='#444', fg='#fff', selectforeground='#fff', selectbackground="#064fd6", activestyle='none', exportselection=False)
+listbox_user = Listbox(window, width=45, selectmode=SINGLE, bd=0, bg='#444', fg='#fff', selectforeground='#fff', selectbackground="#064fd6", activestyle='none')
 
 documents_label = Label(text='Documents Count:')
 downloads_label = Label(text='Downloads Count:')
@@ -140,7 +140,7 @@ def callbackVol(event):
     if selection:
         index = selection[0]
         picked_vol = event.widget.get(index)
-        listbox_vol.configure(selectbackground="#064fd6", background="#222")
+        listbox_vol.configure(selectbackground="#064fd6", background="#444")
         print(picked_vol)
         picked_vol = "/Volumes/" + picked_vol
         label_vol.configure(text="Backup Location: " + picked_vol)
@@ -153,7 +153,7 @@ def callbackName(event):
     if selection:
         index = selection[0]
         picked_user = event.widget.get(index)
-        listbox_user.configure(selectbackground="#064fd6", background="#222")
+        listbox_user.configure(selectbackground="#064fd6", background="#444")
         label_user.configure(text="User Folder: " + picked_user)
         print(picked_user)
 
